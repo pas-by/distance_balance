@@ -1,1 +1,1 @@
-adjusting distance balance in GIS8 digital level file
+adjusting distance balance in GSI8 digital level file
