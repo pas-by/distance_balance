@@ -1,0 +1,5 @@
+# config file used by BFbalance.java
+FileName=M_20DEC2019.GSI
+fromLineNo=11
+toLineNo=97
+randomDist=0.4
