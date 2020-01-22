@@ -63,7 +63,7 @@ public class gsi8_util {
   }
 
   public static String getDataWord(char unit, double value){
-    if(!(unit=='0' || unit=='6' || unit =='8'))
+    if(!(unit=='0' || unit=='6' || unit =='8' || unit =='4'))
       throw new NumberFormatException("Wrong unit!!!\t" + unit);
 
     StringBuffer sb = new StringBuffer("......+00000000");
@@ -83,7 +83,7 @@ public class gsi8_util {
            }
            else {
              value = value * 100000f;
-             sb.setCharAt(5,'8');
+             sb.setCharAt(5, unit);
            }
          }
 
@@ -159,4 +159,27 @@ public class gsi8_util {
       value = -value;
     return value;
   }
-}
+
+  //  convert decimal degree to DDD.MMSSssss
+  public static double toHMS(double d){
+    //  make it a positive value
+    d = normalBearing(d);
+
+    int degree = (int)d;
+    double minute = (d - degree) * 60.0f;
+    double second = (minute - (int)minute) * 60.0f;
+
+    //  initialize return value
+    double returnValue = degree + ((int)minute + second/100.0f)/100.0f;
+
+    return returnValue;
+  }
+
+  //  convert a minus bearing to that of positive
+  public static double normalBearing(double d){
+    if(d<0){
+        return normalBearing(d + 360.0f);
+    }
+    return d;
+  }
+}  //  end of class
